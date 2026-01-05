@@ -6,7 +6,7 @@ namespace dx3d
 	class SwapChain final : public GraphicsResource
 	{
 	public : 
-		SwapChain(const GraphicsResourceDesc);
+		SwapChain(const GraphicsResourceDesc& desc);
 	};
 
 }

@@ -83,5 +83,8 @@
     <ClInclude Include="DX3D\Source\DX3D\Graphics\GraphicsResource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="DX3D\Include\DX3D\Core\Math\Rect.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
