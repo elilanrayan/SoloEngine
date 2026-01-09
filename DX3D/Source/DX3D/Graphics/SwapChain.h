@@ -6,7 +6,17 @@ namespace dx3d
 	class SwapChain final : public GraphicsResource
 	{
 	public : 
-		SwapChain(const GraphicsResourceDesc& desc);
+		SwapChain(const SwapChainDesc& desc, const GraphicsResourceDesc& gdesc);
+
+		void present(bool vSync = false);
+	private:
+		void reloadBuffers();
+
+	private:
+		Microsoft::WRL::ComPtr<IDXGISwapChain> m_swapChain{};
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_renderTargetView{};
+
+		friend class DeviceContext;
 	};
 
 }

@@ -1,9 +1,37 @@
 #include <DX3D/Graphics/SwapChain.h>
 
 
-dx3d::SwapChain::SwapChain(const GraphicsResourceDesc& desc) : GraphicsResource (desc)
+dx3d::SwapChain::SwapChain(const SwapChainDesc& desc,const GraphicsResourceDesc& gdesc) : GraphicsResource (gdesc)
 {
+	if (!desc.winHandle) DX3DLogThrowinvalidArg(" No window handle provided.");
+
 	DXGI_SWAP_CHAIN_DESC dxgiDesc{};
-	dxgiDesc.BufferDesc.Width = 
-	m_factory.CreateSwapChain(&m_device,)
+
+	dxgiDesc.BufferDesc.Width = std::max(desc.winSize.width, 1);
+	dxgiDesc.BufferDesc.Height = std::max(desc.winSize.height, 1);
+	dxgiDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	dxgiDesc.BufferCount = 2;
+	dxgiDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+
+	dxgiDesc.OutputWindow = static_cast<HWND>(desc.winHandle);
+	dxgiDesc.SampleDesc.Count = 1;
+	dxgiDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	dxgiDesc.Windowed = TRUE;
+
+	DX3DGraphicsLogThrowOnFail(m_factory.CreateSwapChain(&m_device, &dxgiDesc, &m_swapChain),"CreateSwapChain failed");
+
+	reloadBuffers();
+}
+
+void dx3d::SwapChain::present(bool vSync)
+{
+	DX3DGraphicsLogThrowOnFail(m_swapChain->Present(vSync, 0),"Present failed");
+}
+
+void dx3d::SwapChain::reloadBuffers()
+{
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> buffer{};
+	DX3DGraphicsLogThrowOnFail(m_swapChain->GetBuffer(0, IID_PPV_ARGS(&buffer)),"Get Buffer failed;");
+
+	DX3DGraphicsLogThrowOnFail(m_device.CreateRenderTargetView(buffer.Get(), nullptr, &m_renderTargetView),"Create RenderTargetView Failed");
 }

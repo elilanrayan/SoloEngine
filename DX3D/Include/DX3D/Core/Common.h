@@ -1,6 +1,7 @@
 #pragma once
 #include <DX3D/Core/Core.h>
 #include <DX3D/Core/Logger.h>
+#include <DX3D/Core/Math/Rect.h>
 
 namespace dx3d {
 	struct BaseDesc {
@@ -9,21 +10,42 @@ namespace dx3d {
 
 	struct WindowDesc {
 		BaseDesc base;
+		Rect size{};
 	};
 
 	struct GraphicsEngineDesc {
 		BaseDesc base;
 	};
 
-	struct RenderSystemDesc {
+	struct GraphicsDeviceDesc {
 		BaseDesc base;
 	};
 
 	struct SwapChainDesc {
-	  
+		void* winHandle{};
+		Rect winSize{};
+	};
+
+	struct DisplayDesc {
+		WindowDesc window;
+		GraphicsDevice& graphicsDevice;
+	};
+
+	enum class ShaderType{
+		VertexShader = 0,
+		PixelShader
+	};
+
+	struct ShaderCompileDesc{
+		const char* shaderSourceName{};
+		const void* shaderSourceCode{};
+		size_t shaderSourceCodeSize{};
+		const char* shaderEntryPoint{};
+		ShaderType shaderType{};
 	};
 
 	struct GameDesc {
+		Rect windowSize{1280,720};
 		Logger::LogLevel logLevel = Logger::LogLevel::Error;
 	};
 }

@@ -2,12 +2,15 @@
 #include <DX3D/Core/Base.h>
 #include <d3d11.h>
 #include <DX3D/Core/Common.h>
+#include <wrl.h>
+#include <DX3D/Graphics/GraphicsLogUtils.h>
 
 namespace dx3d
 {
 	struct GraphicsResourceDesc
 	{
 		BaseDesc base;
+		std::shared_ptr<const GraphicsDevice> graphicsDevice;
 		ID3D11Device& m_device;
 		IDXGIFactory& m_factory;
 	};
@@ -16,12 +19,13 @@ namespace dx3d
 	class GraphicsResource : public Base
 	{
 	public:
-		explicit GraphicsResource(const GraphicsResourceDesc& desc) : Base(desc.base), m_device(desc.m_device), m_factory(desc.m_factory)
+		explicit GraphicsResource(const GraphicsResourceDesc& desc) : Base(desc.base), m_device(desc.m_device), m_factory(desc.m_factory),m_graphicsDevice(desc.graphicsDevice)
 		{
 		}
 		
 
 	protected:
+		std::shared_ptr<const GraphicsDevice> m_graphicsDevice;
 		ID3D11Device& m_device;
 		IDXGIFactory& m_factory;
 	};
