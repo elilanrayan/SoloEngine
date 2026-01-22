@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -145,6 +145,7 @@
     <ClCompile Include="DX3D\Source\DX3D\Graphics\GraphicsResource.cpp" />
     <ClCompile Include="DX3D\Source\DX3D\Graphics\ShaderBinary.cpp" />
     <ClCompile Include="DX3D\Source\DX3D\Graphics\GraphicsPipelineState.cpp" />
+    <ClCompile Include="DX3D\Source\DX3D\Graphics\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DX3D\Include\DX3D\Core\Math\Vec4.h" />
@@ -166,6 +167,8 @@
     <ClInclude Include="DX3D\Source\DX3D\Graphics\GraphicsResource.h" />
     <ClInclude Include="DX3D\Source\DX3D\Graphics\ShaderBinary.h" />
     <ClInclude Include="DX3D\Source\DX3D\Graphics\GraphicsPipelineState.h" />
+    <ClInclude Include="DX3D\Source\DX3D\Graphics\VertexBuffer.h" />
+    <ClInclude Include="DX3D\Include\DX3D\Core\Math\Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

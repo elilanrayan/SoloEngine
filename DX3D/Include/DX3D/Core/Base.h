@@ -35,7 +35,7 @@ DX3DLog(getLogger(),Logger::LogLevel::Warning,message);
 #define DX3DLogThrowError(message)\
 	DX3DLogThrow(getLogger(),std::runtime_error,Logger::LogLevel::Error,message)
 
-#define DX3DLogThrowinvalidArg(message)\
+#define DX3DLogThrowInvalidArg(message)\
 	DX3DLogThrow(getLogger(),std::invalid_argument,Logger::LogLevel::Error,message)
 
 

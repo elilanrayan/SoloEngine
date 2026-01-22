@@ -16,6 +16,8 @@ namespace dx3d {
 		SwapChainPtr createSwapChain(const SwapChainDesc& desc) ;
 		DeviceContextPtr createDeviceContext();
 		ShaderBinaryPtr compileshader(const ShaderCompileDesc& desc);
+		GraphicsPipelineStatePtr createGraphicsPipelineState(const GraphicsPipelineStateDesc& desc);
+		VertexBufferPtr createVertexBuffer(const VertexBufferDesc& desc);
 
 		void executeCommandLists(DeviceContext& context);
 	private:

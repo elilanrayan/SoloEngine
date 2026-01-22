@@ -3,6 +3,8 @@
 #include <DX3D/Graphics/SwapChain.h>
 #include <DX3D/Graphics/DeviceContext.h>
 #include <DX3D/Graphics/ShaderBinary.h>
+#include <DX3D/Graphics/GraphicsPipelineState.h>
+#include <DX3D/Graphics/VertexBuffer.h>
 
 using namespace dx3d;
 
@@ -48,6 +50,18 @@ ShaderBinaryPtr dx3d::GraphicsDevice::compileshader(const ShaderCompileDesc& des
 {
 	return std::make_shared<ShaderBinary>(desc, getGraphicsResourceDesc());
 }
+
+GraphicsPipelineStatePtr dx3d::GraphicsDevice::createGraphicsPipelineState(const GraphicsPipelineStateDesc& desc)
+{
+	return std::make_shared<GraphicsPipelineState>(desc, getGraphicsResourceDesc());
+}
+
+VertexBufferPtr dx3d::GraphicsDevice::createVertexBuffer(const VertexBufferDesc& desc)
+{
+	return std::make_shared<VertexBuffer>(desc, getGraphicsResourceDesc());
+}
+
+
 
 void dx3d::GraphicsDevice::executeCommandLists(DeviceContext& context)
 {

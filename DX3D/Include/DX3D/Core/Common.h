@@ -44,6 +44,23 @@ namespace dx3d {
 		ShaderType shaderType{};
 	};
 
+	struct ShaderBinaryData {
+		const void* data{};
+		size_t dataSize{};
+	};
+
+
+	struct GraphicsPipelineStateDesc {
+		const ShaderBinary& vs;
+		const ShaderBinary& ps;
+	};
+
+	struct VertexBufferDesc {
+		const void* vertexList{};
+		ui32 vertexListSize{};
+		ui32 vertexSize{};
+	};
+
 	struct GameDesc {
 		Rect windowSize{1280,720};
 		Logger::LogLevel logLevel = Logger::LogLevel::Error;
